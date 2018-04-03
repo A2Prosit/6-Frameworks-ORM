@@ -141,6 +141,8 @@ On crée un client directement dans le code pour interagir avec ces données
 client.save();`
 
 
+=> On a "Doctrine" qui est un framework ORM et qui est inclus dans Symfony et Laravel.
+
 **3 avantages des ORM :**
 
 1. Harmonisation des types de données, pas besoin de cast.
