@@ -170,7 +170,7 @@ client.save();`
 **Principe du routage**
 Pour cacher des URL avec les paramètre dedans, on peut faire des associations d'URL avec des pages. Pour ne pas faire toutes les associations à la main, il existe un routeur. On peut faire de même pour les gestions de réponses (mettre telle URL si telle réponse du serveur).
 
-# 3 - Framework Laravel:
+# 4 - Framework Laravel:
 
 Laravel est inspiré de symfony pour l'entendre et créer un système de routage efficace.
 On retrouve :
@@ -185,7 +185,7 @@ On retrouve :
 
 
 
-# 4 - Routage & espace de nommage :
+# 5 - Routage & espace de nommage :
 
 Laravel ne contient que l'url de base composée uniquement du nom de domaine.
 Pour naviguer, il faut donc faire des routes : 
@@ -198,3 +198,30 @@ Pour naviguer, il faut donc faire des routes :
 ![](https://s3-eu-west-1.amazonaws.com/sdz-upload/prod/upload/img0629.JPG)
 
 
+**Espaces de nomages**
+
+Représenter un moyen d'encapsuler les élements =>
+On peut avoir des conflits sur les utilisations de bibliothèques thierces (deux noms de classe sur la même fonction).
+
+On peut donc mettre des chemins pour utiliser des classes spécifiques, ou définir des alias sur une des fonctions.
+
+```
+<?php
+namespace mon\nom; // Voyez la section "Définition des espaces de noms"
+
+class MaClasse {}
+function mafonction() {}
+const MACONSTANTE = 1;
+
+$a = new MaClasse;
+$c = new \mon\nom\MaClasse; // Voyez la section "Espace global"
+
+$a = strlen('bonjour'); // Voyez "Utilisation des espaces de noms : retour
+       // à l'espace global
+
+$d = namespace\MACONSTANTE; // Voyez "L'opérateur namespace et la constante __NAMESPACE__
+
+$d = __NAMESPACE__ . '\MACONSTANTE';
+echo constant($d); // Voyez "Espaces de noms et fonctionnalités dynamiques"
+?>
+```
