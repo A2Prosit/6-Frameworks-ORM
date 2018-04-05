@@ -1,10 +1,10 @@
 ## Mots Clés
 - Client Web
 - Module Symfony
-- API Rest
-- Requête HTTP
-- Reponse HTTP
-- Laravel
+- API Rest : Representational State Transfer
+- Requête HTTP : Emise par le client
+- Reponse HTTP : Emise par le serveur
+- Laravel : Framework PHP : pour les artisants du web
 - PHP Web Service
 
 ## Contexte
