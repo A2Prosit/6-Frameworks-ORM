@@ -1,229 +1,215 @@
-
 ## Mots Clés
+- Client Web
+- Module Symfony
+- API Rest
+- Requête HTTP
+- Reponse HTTP
+- Laravel
+- PHP Web Service
 
--   Squelette de site
+## Contexte
+Quoi ?
+- Interroger les ressources du site
 
--   Module de connexion
-    
--   Workflow : Représentation d'une suite de tâche
-    
--   Revue de code qualitative : Consiste à faire relire son code afin d’y trouver le maximum de défauts
-    
--   PDO : PHP Data Objects
-    
--   Communauté
-    
--   Object
-    
--   ORM : mapping objet-relationnel, technique de programmation informatique qui crée l'illusion d'une Base de données orientée objet à partir d'une Base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé. 
-      
+Comment ?
+- En faisant des requêtes http
+- En utilisant une API
 
-##  Contexte
+Pourquoi ?
+- Afin de requêter les articles en vente
+- Interfacer facilement les données sur tous les supports actuels
 
-Quoi
+Contraintes
+- Utiliser une architecture donnée
 
--   Fabriquer un model du site
-    
+## Problématique
+Comment interroger des ressources à l’aide d’une API
 
-Comment
-
--   En créant un squelette de site
-    
--   En incluant PHP (Puzzle style ! #fantou)
-    
-Pourquoi
-
--   Éviter de recréer un site pour chaque projet
-    
--   Gagner du temps
-     
-##  Contraintes
-
--   Garder tout ce qu’on a déjà fait
-
-##  Problématique
-
--   Comment gagner du temps en fabriquant un squelette / modèle de site ?
-    
 ## Généralisation
+Communication
 
--   Optimisation (Temps)
-    
--   Productivité
-    
 ## Hypothèses
+- Une API est une interface de programmation
+- Une API -> Interface en Java
+- ‘’ sert à utiliser l’application depuis un environnement extérieur
 
--   Il existe plusieurs framework en fonction du type d’application.
-    
--   Utilisation d’un framework pour le squelette.
-    
--   On va créer des modules PHP réutilisables.
-    
--   On peut utiliser Symfony pour regrouper différents frameworks.
-    
--   Framework = squelette.
-    
-## Plan d’action
+## Plan d'action
 
-## Etudes
-
--   Différents frameworks
-    
--   ORM
-    
--   Symfony (fonctionnement, implémentation, tout ca tout ca)
-    
--   Laravel
-    
--   Routage (Gestion de requêtes)
-    
-
-## Réalisation
-
- -   Corbeille de workshop
+Etudes :
+- REST
+- API
+- Laravel/Symfony -> Interaction avec REST
+- Requêtes HTTP
 
 
-# 1 - Les principaux framework :
+Réalisation :
+- WS
 
-- **Laravel** : Framework des artisans du web, simple et élégant :
-	- Courbe d'apprentissage très rapide
-	- Documentation très détaillée
-	- Syntaxe claire et expressive
-	- Moteur de template intégré : blade
-	- ORM dédié pour intéragir avec BDD : Eloquent
-	- SGBD via migrations
-	- Grande communauté
-	- Écosystèmes très fourni (VM, Site apprentissage, Cloud...)
-- **Symfony** : Framework PHP, architecture flexible basée sur tous un ensemble de composants indépendants et réutilisables. De nombreux frameworks sont basés sur ses composants. Populaire par sa maturité & ses bonnes performances :
-	- Maintenue (En évolution)
-	- Un standard
-	- Grande flexibilité
-	- Moteur de template intégré : Twig
-	- ORM Doctrine
-	- + de 300 000 développeurs
-	- Documentation très détaillée
-	- Beaucoup de bundles (plugins) à disposition du développeur.
+## Les Webs Services :
 
-- **CodeIgniter** : Performant & flexible :
-	- Très léger (moins de 2 Mo)
-	- Très bonnes performances
-	- Simplicité d'utilisation
-	- Excellente doc
-	- Flexibilité & grande liberté dans structuration du code
-	- Grosse communauté
+Une API (ou service Web) permet d'accéder à des données d'une application sur une autre application. Par exemple, si on a une API météo, on peut récupérer la température {...} de manière rapide, sur n'importe quelle plateforme, en passant par des technologies standardisées du Web (pas lié à un OS ou un langage).
 
-- **Yii** : Rapide & extensible, pensé pour réduire le temps de dev d'applications PHP
-	- Très bonnes performances
-	- DAO pour intéragir avec la BDD
-	- Gestion intégrée de l'authentification
-	- Support natif de Jquery & Ajax
-	- Outil de génération de code automatique, notamment pour les interfaces de type CRUD
-	- De nombreux modules à disposition
+⇒ **UDDI** (Universal Description Discovery and Integration Service) : Norme qui définit le mécanisme pour découvrir dynamiquement des services. Ce sont l'équivalent des pages jaunes des services. Chaque entité proposant des services devra s'y enregistrer.
 
-- **Phalcon** : Dev en C, performant, framework le plus rapide
-	- Excellentes performances couplées à un faible usage en mémoire
-	- Moteur de template très rapide (dev C)
-	- ORM intégré : PHQL
-	- Gestion native des micro-applications
-	- Tous les autres les autres composants d'un framework classique (architecture MVC, routeur, cache, formualaires)...
+![](https://benoitpiette.com/labo/img/arch-typique.png)
+
+Un service web est donc définit sur les caractéristiques suivantes :
+- Utilisable via internet
+- Interface publique décrite d'une manière interprétable par tous.
+- Faiblement couplés, le client ne connaît pas le fournisseur
+- Repose sur des protocoles du web (HTTP / STP / SMTP)
+- Échange via XML / JSON / HTML...
+- Le client est chargé d'analyser / traiter / afficher les données reçus
+- Le serveur reçoit les requêtes, traduit, normalise.
+- Indépendant des plates-formes et des langages
+
+Il existe deux leader sur le marché : SOAP et REST.
+## API - REST :
+
+REST [Representational State Transfer) a été crée en 2000 par Roy Fielding.
+- REST est une architecture basée sur HTTP (uniquement),  opposé à SOAP (protocole) :
+- REST utilise du XML ou du JSON pour envoyer ou recevoir de la data
+- REST est basé sur le principe client/serveur, utilisant le HTTP uniquement
+- REST peut faire des requêtes via un URL
+- REST est sans état (Stateless) ⇒ Serveur n'a aucune idée de l'état du client entre deux requêtes.
+- Nécessité d'avoir une mémoire cache cliente ⇒  Le client doit pouvoir conserver données en mémoire.
+- Très bonnes performances (CPU) par rapport à SOAP
+⇒ **Restful** = Application respectant pleinement REST.
+
+![](https://s3-eu-west-1.amazonaws.com/sdz-upload/prod/upload/clients_servers2.png)
+
+![](https://www.supinfo.com/articles/resources/164943/2422/0.png)
+**Entête de REST** :
+-   GET : Récupération
+-   POST: Ajout
+-   PUT/PATCH: Modification ⇒ Le corps d'une requête PUT contient la nouvelle représentation de la ressource. Le corps d'une requête PATCH contient juste des instructions permettant au serveur d'effectuer la modification. CAD que PATCH ne peut pas créer une nouvelle ressource.
+-   DELETE: Suppression
+
+**Fonctionnement :**
+
+![](https://github.com/A2Prosit/7-WebService/blob/Emilien/Images/2.PNG)
+
+![](https://s3-eu-west-1.amazonaws.com/sdz-upload/prod/upload/Screenshot%202016-01-06%2015.05.031.png)
+*Exemples*:
+
+- GET: /livre/SF/harrypotter/
+- DELETE: /livre/SF/harrypotter/2
+ 
+
+##  API - SOAP :
+
+SOAP [Simple Object Access Protocol] ou 'enveloppe' est :
+- Protocolaire (et non structuré), en utilisant le **WSDL** [STANDARD], il définit une communication entière et des règles strictes.
+- Offre le transport d'objet sérialisées et données en XML.
+ - Encapsule les données dans une enveloppe qui peut-être chiffrée et contenir des pièces jointes.
+- Ressemble à un logiciel d'ordinateur car il est liée à un serveur (logiciel des deux côtés)
+- Si on modifie un logiciel d'un côté, il faut faire la MAJ de l'autre
+- Il doit connaître tout les éléments qu'il va utiliser.
+ - Standardisé par le W3C
+ - Invoque des services en utilisant du Remote Procédure Control. (Fonctions appellés sur une autre machine).
+ - Peut utiliser SMTP / FTP {...}
+ - Faible performances par rapport à REST.
+
+⇒ Le langage **WSDL** (Web Service Definition Language) décrit l'interface au service, en utilisant XML, il fait passer ses entrées et les retours d'appel de service au Web. Il utilise les numéros de port pour définir la connexion au service web.
+
+**Fonctionnement** :
+![](https://github.com/A2Prosit/7-WebService/blob/Emilien/Images/1.PNG)
+
+![](https://user.oc-static.com/files/202001_203000/202693.png)
+
+
+**Service Provider** 
+- Définit le service et ses interfaces
+- Publie sa description dans l'annuaire (UDDI)
+- Effectue traitement
+- Renvoyer réponse
+
+**Annuaire (UDDI)**
+- Maintenir la liste à jour des services
+- Recevoir et enregistrer la description des services
+- Reçoit et répond aux recherche de service
+
+**Programme client**
+- Obitent la description du service
+- Fait la requête auprès des service provider
+- Reçoit et traite les réponses
+
+##  Que choisir ? :
+
+**SOAP :**
+- Standardisé
+- Interopérabilité
+- Sécurité (chiffre l'enveloppe)
+
+MAIS :
+- Mauvaises performances (nécessité d'encapsuler)
+- Complexité / lourdeurs de mise en place / maintenances
+- Cible l'appel de service
+
+**REST:**
+- Simplicité de mise en place / maintenance
+- Repose sur des principes web (connus)
+- Services facilement identifiables
+
+MAIS : 
+- Pas vraiment de standard (ne suit pas WSDL)
+- Sécurité restreinte (HTTP)
+
+
+⇒ En 2010, 75% des services web passaient par REST, contrairement à 15% de SOAP.
+
+
+## Framework & REST :
+https://github.com/CircleOfNice/DoctrineRestDriver
+
+**Module à installer:** composer require circle/doctrine-rest-driver
+- Configurer la database
+
+- Si on souhaite faire du PATCH à la place de PUT :
+⇒ doctrine:
+  dbal:
+    options:
+      use_patch: true
+
+- Configurer les routes de la manière suivante: `{apiHost}/{pathToApi}/{tableName}`
+	- Si PUT/PATCH ou Get (seul) : `/{id}`
+	- POST et GET (tous) reste sur la manière basique
 	
-	
-# 2 - Les ORM  :
+**Comment ça marche:**
+- Utilise le JSON par défaut
+- Fait les bonnes réponses (cf HTTP)
+- Transforme les URL en requêtes
+- Utilisable via des fonctions doctrines, directement dans un contrôleur (cf ex - lien au dessus)
 
-*"mapping objet-relationnel, technique de programmation informatique qui crée l'illusion d'une Base de données orientée objet à partir d'une Base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé"*
+## Framework & Laravel:
+https://github.com/dingo/api
+- 4600 étoiles sur Github
+- Valable à partir de la V5
+- Gestion authentification (HTTP...)
+- Transformation de la réponse via "fractal"
+- Pouvoir versionner son API
+- Pouvoir limiter l'accès à l'API à des heures
+- Permet d'effectuer des requêtes internes
+- Documentation détaillée
 
-C'est une base de données écrite par exemple en PHP, via des objets : 
-
-![](https://www.killerphp.com/wp-content/uploads/2009/12/orm-framework.png)
-
-On crée un client directement dans le code pour interagir avec ces données 
-`client = new clients_object("Stefan","Mischook");  
-client.save();`
-
-
-=> On a "Doctrine" qui est un framework ORM et qui est inclus dans Symfony et Laravel.
-
-**3 avantages des ORM :**
-
-1. Harmonisation des types de données, pas besoin de cast.
-
-2. Plus facile à débuger car écrit dans le même langage 
-
-3. ORM s'occupe de protéger contre les injections SQL
-
-
-**Quand l'utiliser** :
-
--   You have 3 or more programmers on a web application.
--   Your database consist of 10+ tables.
--   You have say 10+ queries to make.
-
-	
-	
-# 3 - Framework symfony  :
-
-- Avoir PHP v7.1 au mini + 'Composer' installé
-- On peut dispose de nombreuses fonctions supplémentaires, mais le langage est semblable au php 	(avec $ pour variables) ==> {mt_random...}
-- Il faut associer les pages de code avec des URL 
-- On peut mettre en place des contrôleur ou des routings.
-- Symfony propose de nombreux templates et de nombreuses configurations
-- On retrouve du YAML et du XML pour compléter certaines fonctionnalités de symfony.
-
-**Principe du routage**
-Pour cacher des URL avec les paramètre dedans, on peut faire des associations d'URL avec des pages. Pour ne pas faire toutes les associations à la main, il existe un routeur. On peut faire de même pour les gestions de réponses (mettre telle URL si telle réponse du serveur).
-
-# 4 - Framework Laravel:
-
-Laravel est inspiré de symfony pour l'entendre et créer un système de routage efficace.
-On retrouve :
-- Espaces de nom (bien ranger son code pour éviter conflits de nomages).
-- Fonctions anonymes = fonctions closures. Pour améliorer le code
-- Méthodes magiques : méthodes qui n'ont pas été écrites dans une classe mais qui peuvent-être appellées et résolues.
-- Interface, Laravel est basé sur des interfaces.
-- Les traits, pour ajouter des propriétés et méthodes à une classe sans passer par l'héritage.
-
-
-⇒ Laravel est basé sur de la POO, proposant du MVC, mais ne l'imposant pas. Il est judicieu de s'en éloigner.
-
-
-
-# 5 - Routage & espace de nommage :
-
-Laravel ne contient que l'url de base composée uniquement du nom de domaine.
-Pour naviguer, il faut donc faire des routes : 
-`Route::get(``'1'``,` `function``() {` `return` `'Je suis la page 1 !'``; });`
-
-`Route::get(``'2'``,` `function``() {` `return` `'Je suis la page 2 !'``; });`
-
-`Route::get(``'3'``,` `function``() {` `return` `'Je suis la page 3 !'``; });`
-
-![](https://s3-eu-west-1.amazonaws.com/sdz-upload/prod/upload/img0629.JPG)
-
-
-**Espaces de nomages**
-
-Représenter un moyen d'encapsuler les élements =>
-On peut avoir des conflits sur les utilisations de bibliothèques thierces (deux noms de classe sur la même fonction).
-
-On peut donc mettre des chemins pour utiliser des classes spécifiques, ou définir des alias sur une des fonctions.
-
+**Module à installer**
 ```
-<?php
-namespace mon\nom; // Voyez la section "Définition des espaces de noms"
-
-class MaClasse {}
-function mafonction() {}
-const MACONSTANTE = 1;
-
-$a = new MaClasse;
-$c = new \mon\nom\MaClasse; // Voyez la section "Espace global"
-
-$a = strlen('bonjour'); // Voyez "Utilisation des espaces de noms : retour
-       // à l'espace global
-
-$d = namespace\MACONSTANTE; // Voyez "L'opérateur namespace et la constante __NAMESPACE__
-
-$d = __NAMESPACE__ . '\MACONSTANTE';
-echo constant($d); // Voyez "Espaces de noms et fonctionnalités dynamiques"
-?>
+composer require dingo/api
 ```
+Toute la configuration :
+
+https://jolicode.com/blog/initialiser-rapidement-une-api-rest-avec-laravel
+
+## Rappels HTTP :
+**Codes basiques HTTP :**
+- 100 : Afficher la suite de la requête
+- 200 :  OK
+- 300 : Redirection
+- 400 : Bad Request
+- 500 : Erreur interne du serveur
+
+https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
+
+- GET + PUT ⇒ 200
+- POST => 201
+- DELETE ⇒ 204
